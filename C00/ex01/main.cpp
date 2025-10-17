@@ -28,34 +28,6 @@ void	upper_case_word(char *str)
 		str[i] = std::toupper(str[i]);
 }
 
-// void	collect_new_contact_info()
-// {
-// 	std::string	fname;
-// 	std::string lname;
-// 	std::string nick_name;
-// 	std::string ph_num;
-// 	std::string dark_secret;
-// 	Contact new_contact;
-
-// 	std::cout << "Enter your first name" << std::endl;
-// 	std::cin >> fname;
-// 	new_contact.add_first_name(fname);
-// 	std::cout << "Enter your last name" << std::endl;
-// 	std::cin >> lname;
-// 	new_contact.add_last_name(lname);
-// 	std::cout << "Enter your nick name" << std::endl;
-// 	std::cin >> nick_name;
-// 	new_contact.add_nick_name(nick_name);
-// 	std::cout << "Enter your phone number" << std::endl;
-// 	std::cin >> ph_num;
-// 	new_contact.add_phone_num(ph_num);
-// 	std::cout << "Enter any dark secret" << std::endl;
-// 	std::cin >> dark_secret;
-// 	new_contact.add_dark_secret(dark_secret);
-// 	std::cout << "New contact is added" <<std::endl;
-// 	handle_user_input();
-// }
-
 void	handle_user_input(PhoneBook phBook)
 {
 	std::string	user_input;
@@ -67,9 +39,11 @@ void	handle_user_input(PhoneBook phBook)
 		if ((user_input.compare("ADD") == 0))
 			phBook.addNewContact();
 		else if (!strcmp("SEARCH", &user_input[0]))
-			std::cout << "SEARCH is typed" << std::endl;
+			phBook.searchContact();
 		else if (!strcmp("EXIT", &user_input[0]))
 			break;
+		else
+			std::cout << "Invalid input, try again" << std::endl;
 	}
 }
 

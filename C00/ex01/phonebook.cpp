@@ -24,12 +24,32 @@ void PhoneBook::_diplayLastAddedContact()
 	std::cout << "-----------------------------------------------" << std::endl;
 }
 
+std::string	PhoneBook::_trimString(std::string str)
+{
+	int			str_len;
+	int			max_len = 10;
+	std::string	new_str;
+
+	str_len = str.length();
+	if (str_len < max_len)
+	{
+		new_str = str;
+		new_str.insert(str_len, max_len - str_len, ' ');
+	}
+	else if (str_len > max_len)
+	{
+		new_str = str.substr(0, 9);
+		new_str.insert(9, 1, '.');
+	}
+	return (new_str);
+}
+
 bool	PhoneBook::addNewContact()
 {
-	_incrementIndex();
-	_incrementTotalContracts();
 	std::string	input;
 
+	_incrementIndex();
+	_incrementTotalContracts();
 	std::cout << "Enter first name" << std::endl;
 	std::cin >> input;
 	this->_contact[_index].add_first_name(input);
@@ -50,15 +70,30 @@ bool	PhoneBook::addNewContact()
 	return (true);
 }
 
+bool	PhoneBook::searchContact()
+{
+	int	index;
+
+	if (this->_index == -1)
+		std::cout << "PhoneBook is empty." << std::endl;
+	else
+	{
+		std::cout << "Provide the index between 0 to " << _totalContacts - 1 <<std::endl;
+		std::cin >> index;
+		if (index >= 0 && index < _totalContacts)
+			displayContact(index);
+		else
+			std::cout << "Index is wrong" << std::endl;
+	}
+	return (true);
+}
+
 bool	PhoneBook::displayContact(int index)
 {
-	if (index >= 0 && index < _totalContacts - 1)
-	{
-		std::cout << "|Index     |First Name|Last Name |Nick Name |";
-		std::cout << index;
-		std::cout << this->_contact[index].getFirstName();
-		std::cout << this->_contact[index].getLastName();
-		std::cout << this->_contact[index].getNickName();
-	}
+	std::cout << "|Index     |First Name|Last Name |Nick Name |" << std::endl;
+	std::cout <<"|" << index << "         " << "|";
+	std::cout << _trimString(this->_contact[index].getFirstName()) << "|";
+	std::cout << _trimString(this->_contact[index].getLastName()) << "|";
+	std::cout << _trimString(this->_contact[index].getNickName()) << "|" <<std::endl;
 	return (false);
 }

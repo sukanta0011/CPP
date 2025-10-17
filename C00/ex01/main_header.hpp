@@ -31,16 +31,17 @@ class Contact
 class PhoneBook
 {
 	private:
-		int		_index = -1;
-		int		_totalContacts = 0;
-		Contact _contact[LST_SIZE];
-		void	_incrementIndex();
-		void	_incrementTotalContracts();
-		void	_diplayLastAddedContact();
+		int			_index = -1;
+		int			_totalContacts = 0;
+		Contact 	_contact[LST_SIZE];
+		void		_incrementIndex();
+		void		_incrementTotalContracts();
+		void		_diplayLastAddedContact();
+		std::string _trimString(std::string str);
 	public:
-		bool	addNewContact();
-		bool	searchContact(int index);
-		bool	displayContact(int index);		
+		bool		addNewContact();
+		bool		searchContact();
+		bool		displayContact(int index);		
 };
 
 // ##-------------utils------------------##//
@@ -50,6 +51,6 @@ int	is_alpha(char c);
 int	is_num(char c);
 
 // ##-------------main------------------##//
-void	handle_user_input();
+void	handle_user_input(PhoneBook phBook);
 
 #endif
